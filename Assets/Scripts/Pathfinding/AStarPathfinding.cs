@@ -16,9 +16,17 @@ public class AStarPathfinding : MonoBehaviour
         Node targetNode = gridManager.GetNodeFromWorld(targetPos);
 
         if (startNode == null || targetNode == null) return null;
-        if (!gridManager.IsWalkable(startNode) || !gridManager.IsWalkable(targetNode)) return null;
+        //起点不可行走时，找最近可行走节点
+        if (!gridManager.IsWalkable(startNode))
+            startNode = FindNearestWalkableNode(startNode);
 
-        //用 MinHeap 替代 List
+        //终点不可行走时，找最近可行走节点（解决玩家贴墙问题）
+        if (!gridManager.IsWalkable(targetNode))
+            targetNode = FindNearestWalkableNode(targetNode);
+
+        if (startNode == null || targetNode == null) return null;
+
+        //用 MinHeap
         MinHeap openSet = new MinHeap();
         HashSet<Node> closedSet = new HashSet<Node>();
 
@@ -108,5 +116,35 @@ public class AStarPathfinding : MonoBehaviour
         }
         simplified.Add(path[path.Count - 1]);
         return simplified;
+    }
+
+    //从给定节点开始，BFS 搜索最近的可行走节点
+    Node FindNearestWalkableNode(Node origin)
+    {
+        if (origin == null) return null;
+        if (gridManager.IsWalkable(origin)) return origin;
+
+        Queue<Node> queue = new Queue<Node>();
+        HashSet<Node> visited = new HashSet<Node>();
+        queue.Enqueue(origin);
+        visited.Add(origin);
+
+        while (queue.Count > 0)
+        {
+            Node current = queue.Dequeue();
+
+            foreach (Node neighbor in gridManager.GetNeighbors(current))
+            {
+                if (visited.Contains(neighbor)) continue;
+                visited.Add(neighbor);
+
+                if (gridManager.IsWalkable(neighbor))
+                    return neighbor;
+
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        return null;   // 整个网格都不可行走
     }
 }
