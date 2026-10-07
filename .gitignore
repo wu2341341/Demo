@@ -1,0 +1,50 @@
+# ============ Unity 核心忽略 ============
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# ============ 编译产物 ============
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# 不要忽略 *.dll，第三方 DLL 需要提交
+
+# ============ Visual Studio 缓存 ============
+.vs/
+.idea/
+.vscode/
+
+# ============ 操作系统垃圾 ============
+.DS_Store
+Thumbs.db
+
+# ============ 第三方资源（版权保护，不上传） ============
+/Assets/ThirdParty/
+/Assets/StarterAssets/
+/Assets/UnityTechnologies/
+/Assets/DoubleL/
+
+# ============ 打包输出 ============
+[Bb]uild/
+[Bb]uilds/
+*.apk
+*.app
+
+# ============ 崩溃日志 ============
+sysinfo.txt
+crashlytics-build.properties
