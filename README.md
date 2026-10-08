@@ -242,15 +242,19 @@ Assets/
 
 
 
-\### 运行步骤
+### 方式一：直接下载
 
+[点击下载 ARPG Demo v1.0 (Windows)](https://github.com/wu2341341/Demo/releases/download/v1.0/ARPG_Demo_Windows.zip)
 
+解压后双击 `Demo.exe` 即可运行。
+
+### 方式二：从源码运行
 
 1\. 克隆仓库
 
 &#x20;  ```bash
 
-&#x20;  git clone https://github.com/wu2341341/ARPG\_Demo.git
+&#x20;  git clone https://github.com/wu2341341/Demo.git
 
 &#x20;  ```
 
